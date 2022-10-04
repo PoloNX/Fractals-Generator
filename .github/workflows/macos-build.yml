@@ -3,17 +3,6 @@ name: macOS build
 on:
   pull_request:
   push:
-    paths-ignore:
-      - '.github/workflows/coverage.yml'
-      - '.github/workflows/linux-build.yml'
-      - '.github/workflows/msys2-build.yml'
-      - '.github/workflows/windows-build.yml'
-      - '.gitignore'
-      - 'LICENSE'
-      - 'CHANGELOG.md'
-      - 'README.md'
-      - 'README_en.md'
-      - 'README_fr.md'
 
 jobs:
   build:
@@ -60,12 +49,15 @@ jobs:
         path: ${{ env.XMAKE_GLOBALDIR }}/.xmake/packages
         key: macOS-${{ matrix.arch }}-${{ matrix.mode }}-${{ steps.dep_hash.outputs.hash }}-W${{ steps.pkg_key.outputs.key }}
 
+    - name: Do one xmake -vD
+      run: xmake -vD 
+
     # Setup compilation mode and install project dependencies
     - name: Configure xmake and install dependencies
       run: xmake config --arch=${{ matrix.arch }} --mode=${{ matrix.mode }} --yes
 
     # Build the engine
-    - name: Build Nazara
+    - name: Build Fractals-Generator
       run: xmake --yes
 
     # Run unit tests
@@ -78,7 +70,7 @@ jobs:
       run: xmake config --arch=${{ matrix.arch }} --mode=${{ matrix.mode }} --yes
 
     # Install the result files
-    - name: Install Nazara
+    - name: Install Fractals-Generator
       run: xmake install -vo package
 
     # Upload artifacts

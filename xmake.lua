@@ -1,4 +1,5 @@
 add_requires("sfml")
+add_requires("imgui")
 add_requires("imgui-sfml")
 
 target("Fractal_sfml")
@@ -16,5 +17,6 @@ target("Fractal_sfml")
   set_rundir(".")
 
   add_packages("sfml")
+  add_packages("imgui")
   add_packages("imgui-sfml")
 
