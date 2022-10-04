@@ -59,7 +59,7 @@ jobs:
 
     # Setup installation configuration
     - name: Configure xmake for installation
-      run: xmake config --arch=${{ matrix.arch }} --mode=${{ matrix.mode }} --ffmpeg=n --shadernodes=y --tests=y --yes
+      run: xmake config --arch=${{ matrix.arch }} --mode=${{ matrix.mode }} --yes
 
     # Install the result files
     - name: Install Fractals-Generator
