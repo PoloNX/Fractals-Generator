@@ -63,11 +63,6 @@ jobs:
     - name: Build Fractals-Generator
       run: xmake --yes
 
-    # Run unit tests
-    - name: Run unit tests
-      if: matrix.mode != 'releasedbg'
-      run: xmake run NazaraUnitTests
-
     # Setup installation configuration
     - name: Configure xmake for installation
       run: xmake config --arch=${{ matrix.arch }} --mode=${{ matrix.mode }} --yes
