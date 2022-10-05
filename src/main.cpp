@@ -9,12 +9,12 @@
 int main()
 {
     //resolution of the window
-    const int width = sf::VideoMode::getDesktopMode().width;
-    const int height = sf::VideoMode::getDesktopMode().height;
-	
-    sf::RenderWindow window(sf::VideoMode(width, height), "Fractals Generator SFML + GLSL", sf::Style::Fullscreen);
-    window.setVerticalSyncEnabled(true);
+    int width = sf::VideoMode::getDesktopMode().width;
+    int height = sf::VideoMode::getDesktopMode().height;
 
+    sf::RenderWindow window(sf::VideoMode(width, height), "Fractals Generator SFML + GLSL");
+    window.setVerticalSyncEnabled(true);
+    
     ImGui::SFML::Init(window);
 	
     sf::RectangleShape rect;
@@ -68,6 +68,11 @@ int main()
                 case sf::Event::Closed:
                     window.close();
                     break;
+                case sf::Event::Resized:
+                    width = window.getSize().x;
+                    height = window.getSize().y;
+                    shader.setUniform("resolution", sf::Vector2f(window.getSize()));
+                    break;
                 case sf::Event::MouseWheelScrolled:
                     targetScale = std::clamp(targetScale - targetScale * 0.1f * event.mouseWheelScroll.delta, 0.000001f, 4.f);
                     shader.setUniform("scale", scale);
@@ -86,9 +91,7 @@ int main()
                         }
                         
                         break;
-
                     }
-                    break;
                 }
             }
 
@@ -128,7 +131,7 @@ int main()
 
         ImGui::SFML::Update(window, deltaClock.restart());
 
-        utils::manageImGui(fractal, whichColor, r, n, window, rect, shader, precision);
+        utils::manageImGui(fractal, whichColor, r, n, window, rect, shader, precision, width, height);
         shader.setParameter("palette", color[whichColor]);
 
         window.draw(rect, &shader);

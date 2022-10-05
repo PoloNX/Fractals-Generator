@@ -49,7 +49,7 @@ namespace utils {
 		}
 	}
 
-	void manageImGui(int& fractal, int& whichColor, float& r, float& n, sf::RenderWindow& window, sf::RectangleShape& rect, sf::Shader& shader, int& precision) {
+	void manageImGui(int& fractal, int& whichColor, float& r, float& n, sf::RenderWindow& window, sf::RectangleShape& rect, sf::Shader& shader, int& precision, int& width, int& height) {
 		ImGui::Begin("Fractals Generator by PoloNX");
 		ImGui::SliderInt("iteration", &precision, 1, 3000);
 		if (fractal == 2) {
@@ -61,14 +61,14 @@ namespace utils {
 		ImGui::Combo("Fractal", &fractal, "Mandelbrot\0Burning Ship\0Julia\0");
 		ImGui::Combo("Color", &whichColor, "Blue\0Orange\0Rainbow\0Blue_Orange\0Custom\0");
 		ImGui::NewLine();
-		if (ImGui::Button("Exit")) {
-			window.close();
-		}
 		if (fractal == 2)
 			ImGui::Text("Screeshot -> left click");
 		else
 			if (ImGui::Button("Screenshot")) 
 				utils::screenshot(window, fractal, rect, shader);
+		if (ImGui::Button("Exit")) {
+			window.close();
+		}
 		ImGui::End();
 
 		shader.setParameter("max_iteration", precision);
