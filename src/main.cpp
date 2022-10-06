@@ -105,8 +105,8 @@ int main()
                 }
                 
                 scale = 2.2f;
-                r = (event.mouseMove.x - width / 2) / float(1920 / 3) - 0.5;
-                n = (event.mouseMove.y - height / 2) / float(1080 / 3) - 0.5;
+                r = (event.mouseMove.x - width / 2) / float(width / 3) - 0.5;
+                n = (event.mouseMove.y - height / 2) / float(height / 3) - 0.5;
                 shader.setUniform("scale", scale);
                 shader.setUniform("R", r);
                 shader.setUniform("n", n);
