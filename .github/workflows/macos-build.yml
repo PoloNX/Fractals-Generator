@@ -37,6 +37,10 @@ jobs:
     - name: Update xmake repository
       run: xmake repo --update
 
+    # Update xrepo
+    - name: Update xrepo
+      run: xrepo update-repo
+
     # Fetch xmake dephash
     - name: Retrieve dependencies hash
       id: dep_hash
