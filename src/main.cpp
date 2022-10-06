@@ -103,16 +103,17 @@ int main()
                 {
                     utils::screenshot(window, fractal, rect, shader);
                 }
-                else if (lock == false) {
-                    scale = 2.2f;
-                    r = (event.mouseMove.x - width / 2) / float(1920 / 3) - 0.5;
-                    n = (event.mouseMove.y - height / 2) / float(1080 / 3) - 0.5;
-                    shader.setUniform("R", r);
-                    shader.setUniform("n", n);
-                }
+                
+                scale = 2.2f;
+                r = (event.mouseMove.x - width / 2) / float(1920 / 3) - 0.5;
+                n = (event.mouseMove.y - height / 2) / float(1080 / 3) - 0.5;
+                shader.setUniform("scale", scale);
+                shader.setUniform("R", r);
+                shader.setUniform("n", n);
             }
-			
         }
+			
+    
 
         if (targetScale != scale && fractal != 2)
         {
