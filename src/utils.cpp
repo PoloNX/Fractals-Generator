@@ -10,6 +10,7 @@ namespace utils {
         texture.create(window.getSize().x, window.getSize().y);
         texture.update(window);
 		
+		//Create a folder for each fractals
 		if (fractal == 0) {
 			path += "/mandelbrot/";
 		}
@@ -20,11 +21,13 @@ namespace utils {
 			path += "/julia/";
 		}
 		
+		//Create if it doesn't exist
 		if (!std::filesystem::exists(path))
 			std::filesystem::create_directories(path);
 		
 		int i = 0;
 	
+		//The name is recursive (never overwrite older screens)
 		while (std::filesystem::exists(path + std::to_string(i) + name))
 			i++;
 		name = std::to_string(i) + name;
