@@ -2,6 +2,8 @@ add_requires("sfml")
 add_requires("imgui")
 add_requires("imgui-sfml")
 
+add_rules("plugin.vsxmake.autoupdate")
+
 target("Fractal_sfml")
   set_kind("binary")
   set_languages("cxx20")
