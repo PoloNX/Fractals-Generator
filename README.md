@@ -24,5 +24,7 @@ To use a custom palette you have to create one png file with 256x1 pixels. Then 
 
 To test the beta of this project you have to go on [actions](https://github.com/PoloNX/Fractals-Generator/actions) and click on the last commmit. Below you have the download link.
 
+## MACOS WASN'T TESTED SO I DON'T KNOW IF IT WORKS !
+
 ## If you like my work you can star this repo 🌟 
 
